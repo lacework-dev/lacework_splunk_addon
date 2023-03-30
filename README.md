@@ -1,9 +1,15 @@
-# lacework-splunk-addon
-A Splunk TA to provide CIM compliance on Lacework alert and audit data. This add-on is designed to work in conjuction with the [Splunk integration](https://docs.lacework.com/onboarding/splunk) available via Lacework UI.
+**lacework-splunk-addon**
+A Splunk Technology Add-On (TA) to provide CIM compliance on Lacework alert and audit data. This add-on is designed to work in conjuction with the [Splunk integration](https://docs.lacework.com/onboarding/splunk) available via Lacework UI.
 
-# Installation
+**Installation Notes**
 
-## Installation via Splunk UI
+The Splunk TA for Lacework was created for use with the HEC input in Splunk. This contains both Index Time (transforms) and Search Time (props) operations for ingesting and properly sourcetyping the Lacework (HEC) Splunk Alert Channel.
+
+In Splunk Cloud, depending on your deployment type, the HEC endpoint will be similar to  https://http-inputs.<host>.splunkcloud.com:443/<endpoint> and the TA should be deployed here and at the Search Tier.
+
+Do note that the token created on the HEC input needs to match what your Lacework Tenant is configured with, and that the source field in Lacework is set to <b>lacework</b> for the transform to properly identifiy and rename. 
+
+**Installation via Splunk UI**
 
 1. Download the latest release of the add-on from the GitHub repo: https://github.com/lacework-dev/lacework_splunk_addon/releases/new
 
@@ -21,6 +27,12 @@ A Splunk TA to provide CIM compliance on Lacework alert and audit data. This add
 
 ![image](https://user-images.githubusercontent.com/79470244/190000589-14f90817-2608-495e-a934-8d8dc76277be.png)
 
-# Notes
+**Notes**
 - This add-on works in conjuction with the existing Lacework integration with Splunk via the UI. This does not replace it.
 - In the UI Integration, the "source" field must be set to "lacework" for the TA to properly parse and map fields to CIM. This can be change, but you must rename the props.conf source::lacework stanza appropriately in the app's files.
+
+
+**Reference URIs**
+[Lacework Docs](https://docs.lacework.net)<br>
+[Splunk Alert Channel Configuration](https://docs.lacework.com/onboarding/splunk)<br>
+
